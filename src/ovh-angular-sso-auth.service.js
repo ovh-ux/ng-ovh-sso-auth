@@ -14,6 +14,7 @@ angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function ()
     var userUrl = "/engine/api/me";
     var rules = [];
     var urlPrefix = "";
+    var ovhSubsidiary = null;
 
     /**
      * @ngdoc function
@@ -71,6 +72,21 @@ angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function ()
         rules = _rules;
     };
 
+    /**
+     * @ngdoc function
+     * @name setOvhSubsidiary
+     * @methodOf ovh-angular-sso-auth.ssoAuthenticationProvider
+     *
+     * @description
+     * Set OVH subsidiary country code
+     * When setted ovh.com/auth will use the new login/registration form based on the API
+     *
+     * @param {string} _ovhSubsidiary OVH subsidiary country code
+     */
+    this.setOvhSubsidiary = function (_ovhSubsidiary) {
+        ovhSubsidiary = _ovhSubsidiary;
+    };
+
     // ---
 
     /**
@@ -108,7 +124,8 @@ angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function ()
          * Get login page url
          */
         this.getLoginUrl = function () {
-            return loginUrl;
+            var separator = loginUrl.indexOf("?") > -1 ? "&" : "?";
+            return loginUrl + (ovhSubsidiary ? separator + "ovhSubsidiary=" + ovhSubsidiary : "");
         };
 
         /**

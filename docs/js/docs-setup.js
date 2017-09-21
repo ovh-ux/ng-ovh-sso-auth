@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "ovh-angular-sso-auth",
       "shortDescription": "Authentication for SSO",
-      "keywords": "_loginurl _logouturl _rules _userurl api authentication configuration function login logout ovh-angular-sso-auth rules service set setconfig setloginurl setlogouturl setuserurl sso ssoauthenticationprovider url"
+      "keywords": "_loginurl _logouturl _ovhsubsidiary _rules _userurl api authentication based code configuration country form function login logout ovh ovh-angular-sso-auth rules service set setconfig setloginurl setlogouturl setovhsubsidiary setted setuserurl sso ssoauthenticationprovider subsidiary url"
     },
     {
       "section": "api",
