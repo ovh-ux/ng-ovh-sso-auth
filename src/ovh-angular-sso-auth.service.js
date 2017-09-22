@@ -124,8 +124,7 @@ angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function ()
          * Get login page url
          */
         this.getLoginUrl = function () {
-            var separator = loginUrl.indexOf("?") > -1 ? "&" : "?";
-            return loginUrl + (ovhSubsidiary ? separator + "ovhSubsidiary=" + ovhSubsidiary : "");
+            return loginUrl;
         };
 
         /**
@@ -379,7 +378,17 @@ angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function ()
 
                 // redirect to login page
                 $timeout(function () {
-                    $window.location.assign(loginUrl + (loginUrl.indexOf("onsuccess") > -1 ? "" : (loginUrl.indexOf("?") > -1 ? "&" : "?") + "onsuccess=" + encodeURIComponent(url || $location.absUrl())));
+                    var params = [];
+
+                    if (ovhSubsidiary) {
+                        params.push("ovhSubsidiary=" + ovhSubsidiary);
+                    }
+
+                    if (loginUrl.indexOf("onsuccess") === -1) {
+                        params.push("onsuccess=" + encodeURIComponent(url || $location.absUrl()));
+                    }
+
+                    $window.location.assign(loginUrl + (loginUrl.indexOf("?") > -1 ? "&" : "?") + params.join("&"));
                 }, 0);
             }
             return deferredObj.loginPage.promise;
