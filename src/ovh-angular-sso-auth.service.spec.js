@@ -3,7 +3,6 @@
 describe("sso-auth service", function () {
 
     var loginUrl = "https://www.ovh.com/auth";
-    var loginUrlWithSGOvhSubsidiary = "https://www.ovh.com/auth?ovhSubsidiary=SG";
     var logoutUrl = "https://www.ovh.com/auth?action=disconnect";
     var urlPrefix = "";
     var userUrl = "/engine/api/me";
@@ -92,17 +91,6 @@ describe("sso-auth service", function () {
 
             inject(function (ssoAuthentication) {
                 expect(ssoAuthentication.getUrlPrefix()).toBe(urlPrefix);
-            });
-        });
-
-        it("should get login url with SG OVH subsidiary setted as parameter", function () {
-
-            module(function (ssoAuthenticationProvider) {
-                ssoAuthenticationProvider.setOvhSubsidiary("SG");
-            });
-
-            inject(function (ssoAuthentication) {
-                expect(ssoAuthentication.getLoginUrl()).toBe(loginUrlWithSGOvhSubsidiary);
             });
         });
     });
