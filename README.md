@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/ovh-angular-sso-auth.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-sso-auth/)
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh/ovh-angular-sso-auth.svg)](https://travis-ci.org/ovh/ovh-angular-sso-auth)
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh/ovh-angular-sso-auth.svg)](https://travis-ci.org/ovh/ovh-angular-sso-auth)
 
 OVH $http interceptor working with sso.
 Can be used with $resource!
