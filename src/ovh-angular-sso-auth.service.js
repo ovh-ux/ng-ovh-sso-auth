@@ -6,7 +6,7 @@
  * Authentication for SSO
  *
  */
-angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function () {
+export default function () {
     "use strict";
 
     var loginUrl = "https://www.ovh.com/auth";
@@ -398,4 +398,4 @@ angular.module("ovh-angular-sso-auth").provider("ssoAuthentication", function ()
     this.$get = function ($q, $timeout, $location, $window, $cookies) {
         return new Authentication($q, $timeout, $location, $window, $cookies);
     };
-});
+};
