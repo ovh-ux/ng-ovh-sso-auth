@@ -6,7 +6,7 @@
  * Authentication interceptor for SSO
  *
  */
-angular.module("ovh-angular-sso-auth").factory("ssoAuthInterceptor", function ($q, ssoAuthentication) {
+export default function ($q, ssoAuthentication) {
     "use strict";
     return {
         /**
@@ -107,4 +107,4 @@ angular.module("ovh-angular-sso-auth").factory("ssoAuthInterceptor", function ($
 
         }
     };
-});
+};
