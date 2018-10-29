@@ -4,7 +4,10 @@
   "license": "BSD-3-Clause",
   "version": "3.1.5",
   "description": "OVH Single Sign On module",
-  "main": "./src/ovh-angular-sso-auth.js",
+  "main": "./dist/ovh-angular-sso-auth.js",
+  "files": [
+    "dist"
+  ],
   "repository": "ovh-ux/ovh-angular-sso-auth",
   "scripts": {
     "test": "yarn run lint",
