@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-sso-auth",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "OVH Single Sign On module",
   "repository": "ovh-ux/ovh-angular-sso-auth",
   "license": "BSD-3-Clause",
