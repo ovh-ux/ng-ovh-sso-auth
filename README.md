@@ -35,39 +35,40 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-sso-auth/
 
 # Usage
 
-```javascript
-.config(["ssoAuthenticationProvider", '$httpProvider', 'constants',
-    function (authentication, $httpProvider, constants) {
-        "use strict";
+```js
+import angular from 'angular';
 
-        authentication.setLoginUrl(constants.prodMode ? constants.loginUrl : "auth.html");
-        authentication.setLogoutUrl(constants.prodMode ? "/engine/api/auth/logout" : "api/proxypass/auth/logout");
-        authentication.setUserUrl(constants.prodMode ? "/engine/api/me" : "api/user");
+angular
+  .module('ovh-angular-sso-auth', [])
+  .config(/* @ngInject */ (ssoAuthenticationProvider, $httpProvider, constants) => {
+    ssoAuthenticationProvider
+      .setLoginUrl(constants.prodMode ? constants.loginUrl : 'auth.html');
+    ssoAuthenticationProvider
+      .setLogoutUrl(constants.prodMode ? '/engine/api/auth/logout' : 'api/proxypass/auth/logout');
+    ssoAuthenticationProvider
+      .setUserUrl(constants.prodMode ? '/engine/api/me' : 'api/user');
+    ssoAuthenticationProvider.setConfig([
+      {
+        serviceType: 'api',
+        urlPrefix: 'api',
+      },
+      {
+        serviceType: 'aapi',
+        urlPrefix: constants.prodMode ? '../2api-m' : '2api-m',
+      },
+      {
+        serviceType: 'apiv6',
+        urlPrefix: 'apiv6',
+      },
+    ]);
 
-        authentication.setConfig([
-            {
-                serviceType: "api",
-                urlPrefix: "api"
-            },
-            {
-                serviceType: "aapi",
-                urlPrefix: constants.prodMode ? "../2api-m" : "2api-m"
-            },
-            {
-                serviceType: "apiv6",
-                urlPrefix: "apiv6"
-            }
-        ]);
-
-        $httpProvider.interceptors.push("ssoAuthInterceptor");
-    }
-])
-.run(['ssoAuthentication', function (authentication) {
-    "use strict";
-    authentication.login().then(function () {
-        // Do what you want after login
+    $httpProvider.interceptors.push('ssoAuthInterceptor');
+  })
+  .run(/* @ngInject */(ssoAuthentication) => {
+    ssoAuthentication.login().then(() => {
+      // Do what you want after login
     });
-}])
+  });
 ```
 
 # Related links
