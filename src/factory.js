@@ -1,6 +1,6 @@
 /**
  * @ngdoc service
- * @name ovh-angular-sso-auth.ssoAuthInterceptor
+ * @name ovh-angular-sso-auth.OvhSsoAuthInterceptor
  * @module ovh-angular-sso-auth
  * @description
  * Authentication interceptor for SSO
@@ -14,7 +14,7 @@ export default /* @ngInject */ function ($q, ssoAuthentication) {
     /**
          * @ngdoc function
          * @name request
-         * @methodOf ovh-angular-sso-auth.ssoAuthInterceptor
+         * @methodOf ovh-angular-sso-auth.OvhSsoAuthInterceptor
          *
          * @description
          * Interceptors get called with a http config object
@@ -70,7 +70,7 @@ export default /* @ngInject */ function ($q, ssoAuthentication) {
     /**
      * @ngdoc function
      * @name responseError
-     * @methodOf ovh-angular-sso-auth.ssoAuthInterceptor
+     * @methodOf ovh-angular-sso-auth.OvhSsoAuthInterceptor
      *
      * @description
      * Interceptor gets called when a previous interceptor threw an error or resolved
