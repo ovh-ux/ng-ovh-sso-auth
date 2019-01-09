@@ -1,3 +1,12 @@
+# [4.0.0-alpha.3](https://github.com/ovh-ux/ovh-angular-sso-auth/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2019-01-09)
+
+
+### Bug Fixes
+
+* **dependecy injection:** add missing ng-inject ([4ed063f](https://github.com/ovh-ux/ovh-angular-sso-auth/commit/4ed063f))
+
+
+
 # [4.0.0-alpha.2](https://github.com/ovh-ux/ovh-angular-sso-auth/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2018-11-27)
 
 
