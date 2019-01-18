@@ -1,3 +1,17 @@
+# [4.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.0.0-alpha.3...v4.0.0-beta.0) (2019-01-18)
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([e49918b](https://github.com/ovh-ux/ng-ovh-sso-auth/commit/e49918b))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhSsoAuth`
+
+
+
 # [4.0.0-alpha.3](https://github.com/ovh-ux/ovh-angular-sso-auth/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2019-01-09)
 
 
