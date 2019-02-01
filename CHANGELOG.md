@@ -1,3 +1,7 @@
+# [4.0.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.0.0-beta.0...v4.0.0) (2019-02-01)
+
+
+
 # [4.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.0.0-alpha.3...v4.0.0-beta.0) (2019-01-18)
 
 
