@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.0.0...v4.1.0) (2019-07-01)
+
+
+### Features
+
+* **provider:** add from with document referrer value on logout ([#16](https://github.com/ovh-ux/ng-ovh-sso-auth/issues/16)) ([22c474f](https://github.com/ovh-ux/ng-ovh-sso-auth/commit/22c474f))
+
+
+
 # [4.0.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.0.0-beta.0...v4.0.0) (2019-02-01)
 
 
