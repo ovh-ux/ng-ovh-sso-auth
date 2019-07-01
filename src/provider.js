@@ -350,7 +350,13 @@ export default function () {
 
         // redirect to logout page
         $timeout(() => {
-          $window.location.assign(logoutUrl + (logoutUrl.indexOf('onsuccess') > -1 ? '' : `${logoutUrl.indexOf('?') > -1 ? '&' : '?'}onsuccess=${encodeURIComponent(url || $location.absUrl())}`));
+          if (logoutUrl.indexOf('onsuccess') === -1) {
+            logoutUrl += (`${logoutUrl.indexOf('?') > -1 ? '&' : '?'}onsuccess=${encodeURIComponent(url || $location.absUrl())}`);
+          }
+          if (logoutUrl.indexOf('from') === -1 && document.referrer) {
+            logoutUrl += (`${logoutUrl.indexOf('?') > -1 ? '&' : '?'}from=${encodeURIComponent(document.referrer)}`);
+          }
+          $window.location.assign(logoutUrl);
         }, 0);
       }
       return deferredObj.logout.promise;
