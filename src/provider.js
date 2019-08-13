@@ -318,11 +318,12 @@ export default function () {
         method: 'GET',
         headers,
       }).done((data) => {
+        self.user = data; // store user infos
+
         if (data.state === 'incomplete' && !allowIncompleteNic) {
           isLogged = false;
           self.goToSignUpPage();
         } else {
-          self.user = data; // store user infos
           isLogged = true;
         }
       }).fail(() => {
@@ -437,6 +438,8 @@ export default function () {
          * Redirect to configured sign-up page
          */
     this.goToSignUpPage = function (url) {
+      const self = this;
+
       if (!deferredObj.signUpPage) {
         deferredObj.signUpPage = $q.defer();
 
@@ -446,6 +449,10 @@ export default function () {
 
           if (signUpUrl.indexOf('onsuccess') === -1) {
             params.push(`onsuccess=${encodeURIComponent(url || $location.absUrl())}`);
+          }
+
+          if (signUpUrl.indexOf('lang') === -1) {
+            params.push(`lang=${self.user.language ? self.user.language.split('_')[0] : 'fr'}`);
           }
 
           $window.location.assign(signUpUrl + (signUpUrl.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
