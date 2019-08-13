@@ -436,7 +436,7 @@ export default function () {
          * @description
          * Redirect to configured sign-up page
          */
-    this.goToSignUpPage = function () {
+    this.goToSignUpPage = function (url) {
       if (!deferredObj.signUpPage) {
         deferredObj.signUpPage = $q.defer();
 
@@ -445,7 +445,7 @@ export default function () {
           const params = [];
 
           if (signUpUrl.indexOf('onsuccess') === -1) {
-            params.push(`onsuccess=${encodeURIComponent($location.absUrl())}`);
+            params.push(`onsuccess=${encodeURIComponent(url || $location.absUrl())}`);
           }
 
           $window.location.assign(signUpUrl + (signUpUrl.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
