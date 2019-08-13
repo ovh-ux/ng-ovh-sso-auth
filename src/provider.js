@@ -9,10 +9,12 @@
 export default function () {
   let loginUrl = 'https://www.ovh.com/auth';
   let logoutUrl = 'https://www.ovh.com/auth?action=disconnect';
+  let signUpUrl = 'https://www.ovh.com/auth/signup/new/';
   let userUrl = '/engine/api/me';
   let rules = [];
   const urlPrefix = '';
   let ovhSubsidiary = null;
+  let allowIncompleteNic = false;
 
   /**
      * @ngdoc function
@@ -83,6 +85,35 @@ export default function () {
      */
   this.setOvhSubsidiary = function (_ovhSubsidiary) {
     ovhSubsidiary = _ovhSubsidiary;
+  };
+
+  /**
+     * @ngdoc function
+     * @name allowIncompleteNic
+     * @methodOf ovh-angular-sso-auth.ssoAuthenticationProvider
+     *
+     * @description
+     * Configure if sso-auth allow or not incomplete nic.
+     * At login phase, if nic is incomplete and not allowed, redirect to sign-up page.
+     *
+     * @param {boolean} _allowIncompleteNic true to allow incomplete nic to login, false otherwise.
+   */
+  this.allowIncompleteNic = function (_allowIncompleteNic) {
+    allowIncompleteNic = _allowIncompleteNic;
+  };
+
+  /**
+     * @ngdoc function
+     * @name setSignUpUrl
+     * @methodOf ovh-angular-sso-auth.ssoAuthenticationProvider
+     *
+     * @description
+     * Set signUp url to redirect to in case of not allowed incomplete nic.
+     *
+     * @param {string} _signUpUrl The url to redirect to in case of not allowed incomplete nic.
+     */
+  this.setSignUpUrl = function (_signUpUrl) {
+    signUpUrl = _signUpUrl;
   };
 
   // ---
@@ -287,8 +318,13 @@ export default function () {
         method: 'GET',
         headers,
       }).done((data) => {
-        self.user = data; // store user infos
-        isLogged = true;
+        if (data.state === 'incomplete' && !allowIncompleteNic) {
+          isLogged = false;
+          self.goToSignUpPage();
+        } else {
+          self.user = data; // store user infos
+          isLogged = true;
+        }
       }).fail(() => {
         isLogged = false;
       }).always(() => {
@@ -390,6 +426,32 @@ export default function () {
         }, 0);
       }
       return deferredObj.loginPage.promise;
+    };
+
+    /**
+         * @ngdoc function
+         * @name goToSignUpPage
+         * @methodOf ovh-angular-sso-auth.ssoAuthentication
+         *
+         * @description
+         * Redirect to configured sign-up page
+         */
+    this.goToSignUpPage = function () {
+      if (!deferredObj.signUpPage) {
+        deferredObj.signUpPage = $q.defer();
+
+        // redirect to login page
+        $timeout(() => {
+          const params = [];
+
+          if (signUpUrl.indexOf('onsuccess') === -1) {
+            params.push(`onsuccess=${encodeURIComponent($location.absUrl())}`);
+          }
+
+          $window.location.assign(signUpUrl + (signUpUrl.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
+        }, 0);
+      }
+      return deferredObj.signUpPage.promise;
     };
   };
 
