@@ -1,3 +1,5 @@
+import { NIC_STATE_ENUM } from './constants';
+
 /**
  * @ngdoc service
  * @name ovh-angular-sso-auth.ssoAuthenticationProvider
@@ -320,7 +322,7 @@ export default function () {
       }).done((data) => {
         self.user = data; // store user infos
 
-        if (data.state === 'incomplete' && !allowIncompleteNic) {
+        if (data.state === NIC_STATE_ENUM.incomplete && !allowIncompleteNic) {
           isLogged = false;
           self.goToSignUpPage();
         } else {
@@ -394,7 +396,7 @@ export default function () {
             logoutUrl += (`${logoutUrl.indexOf('?') > -1 ? '&' : '?'}from=${encodeURIComponent(document.referrer)}`);
           }
           $window.location.assign(logoutUrl);
-        }, 0);
+        });
       }
       return deferredObj.logout.promise;
     };
@@ -424,7 +426,7 @@ export default function () {
           }
 
           $window.location.assign(loginUrl + (loginUrl.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
-        }, 0);
+        });
       }
       return deferredObj.loginPage.promise;
     };
@@ -456,7 +458,7 @@ export default function () {
           }
 
           $window.location.assign(signUpUrl + (signUpUrl.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
-        }, 0);
+        });
       }
       return deferredObj.signUpPage.promise;
     };
