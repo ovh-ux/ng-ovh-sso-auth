@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.1.0...v4.2.0) (2019-08-20)
+
+
+### Features
+
+* **signup:** manage incomplete nic at login ([#21](https://github.com/ovh-ux/ng-ovh-sso-auth/issues/21)) ([6fb1025](https://github.com/ovh-ux/ng-ovh-sso-auth/commit/6fb1025))
+
+
+
 # [4.1.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.0.0...v4.1.0) (2019-07-01)
 
 
