@@ -321,12 +321,10 @@ export default function () {
         headers,
       }).done((data) => {
         self.user = data; // store user infos
+        isLogged = true;
 
         if (data.state === NIC_STATE_ENUM.incomplete && !allowIncompleteNic) {
-          isLogged = false;
           self.goToSignUpPage();
-        } else {
-          isLogged = true;
         }
       }).fail(() => {
         isLogged = false;
@@ -448,16 +446,25 @@ export default function () {
         // redirect to login page
         $timeout(() => {
           const params = [];
+          let destUrl = signUpUrl;
+          const hasHashInSignUpUrl = destUrl.indexOf('#') > -1;
+          let urlPart = destUrl;
 
-          if (signUpUrl.indexOf('onsuccess') === -1) {
+          if (hasHashInSignUpUrl) {
+            [, urlPart] = signUpUrl.split('#');
+          } else {
+            destUrl += '#/';
+          }
+
+          if (urlPart.indexOf('onsuccess') === -1) {
             params.push(`onsuccess=${encodeURIComponent(url || $location.absUrl())}`);
           }
 
-          if (signUpUrl.indexOf('lang') === -1) {
+          if (urlPart.indexOf('lang') === -1) {
             params.push(`lang=${self.user.language ? self.user.language.split('_')[0] : 'fr'}`);
           }
 
-          $window.location.assign(signUpUrl + (signUpUrl.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
+          $window.location.assign(destUrl + (urlPart.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
         });
       }
       return deferredObj.signUpPage.promise;
