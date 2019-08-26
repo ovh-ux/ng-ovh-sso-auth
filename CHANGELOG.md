@@ -1,3 +1,12 @@
+## [4.2.1](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.2.0...v4.2.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* **provider:** set query params into hash ([#27](https://github.com/ovh-ux/ng-ovh-sso-auth/issues/27)) ([26bb96e](https://github.com/ovh-ux/ng-ovh-sso-auth/commit/26bb96e))
+
+
+
 # [4.2.0](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.1.0...v4.2.0) (2019-08-20)
 
 
