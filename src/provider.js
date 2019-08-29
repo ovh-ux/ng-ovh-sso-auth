@@ -438,8 +438,6 @@ export default function () {
          * Redirect to configured sign-up page
          */
     this.goToSignUpPage = function (url) {
-      const self = this;
-
       if (!deferredObj.signUpPage) {
         deferredObj.signUpPage = $q.defer();
 
@@ -461,7 +459,10 @@ export default function () {
           }
 
           if (urlPart.indexOf('lang') === -1) {
-            params.push(`lang=${self.user.language ? self.user.language.split('_')[0] : 'fr'}`);
+            const navigatorLg = window.navigator.language || window.navigator.userLanguage;
+            if (navigatorLg) {
+              params.push(`lang=${navigatorLg.split('-')[0]}`);
+            }
           }
 
           $window.location.assign(destUrl + (urlPart.indexOf('?') > -1 ? '&' : '?') + params.join('&'));
