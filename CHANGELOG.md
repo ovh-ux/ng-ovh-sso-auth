@@ -1,3 +1,12 @@
+## [4.2.2](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.2.1...v4.2.2) (2019-08-29)
+
+
+### Bug Fixes
+
+* **signup:** use browser language for redirection ([796a640](https://github.com/ovh-ux/ng-ovh-sso-auth/commit/796a640))
+
+
+
 ## [4.2.1](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.2.0...v4.2.1) (2019-08-26)
 
 
